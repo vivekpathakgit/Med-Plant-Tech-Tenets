@@ -5,6 +5,7 @@ const plantSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
+      unique: true,
     },
     photo: {
       data: Buffer,

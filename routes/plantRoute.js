@@ -1,5 +1,10 @@
 import express from "express";
-import { getPlantController } from "../controller/plantController.js";
+import formidable from "express-formidable";
+import {
+  getPlantController,
+  getPlantPhotoController,
+  uploadPlantController,
+} from "../controller/plantController.js";
 
 //router object
 const router = express.Router();
@@ -14,6 +19,8 @@ const router = express.Router();
 //Trial
 //routes
 
+router.post("/create", uploadPlantController);
+
 export default router;
 
 //protected route
@@ -21,4 +28,7 @@ export default router;
 //   res.status(200).send({ ok: true });
 // });
 
-router.get("/:name", getPlantController);
+router.get("/:name", formidable(), getPlantController);
+
+//route Photo
+router.get("/image/:name", formidable(), getPlantPhotoController);
